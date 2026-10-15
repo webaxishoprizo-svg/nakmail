@@ -1,0 +1,6 @@
+﻿# Secrets. For production use: npx wrangler secret put <NAME>
+SESSION_SECRET=replace-with-a-random-32-byte-base64url-secret
+GOOGLE_CLIENT_ID=xxxx.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=xxxx
+ZOHO_CLIENT_ID=xxxx
+ZOHO_CLIENT_SECRET=xxxx

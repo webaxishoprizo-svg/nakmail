@@ -1,0 +1,233 @@
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+@import "@cloudflare/kumo/styles/tailwind";
+@import "tailwindcss";
+
+:root {
+  --font-sans: "Roboto", Arial, sans-serif;
+  --font-display: "Roboto", Arial, sans-serif;
+  --font-script: "Roboto", Arial, sans-serif;
+
+  --paper: #ffffff;
+  --ink: #171717;
+  --ink-soft: #686868;
+  --line: #e5e5e5;
+  --signal: #f20d18;
+  --signal-foreground: #fff;
+  --hot: #f20d18;
+  --warm: #e37400;
+  --ok: #188038;
+  --script: #8ab4f8;
+
+  --background: #ffffff;
+  --foreground: #171717;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  --popover: #ffffff;
+  --popover-foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f6f6;
+  --secondary-foreground: #171717;
+  --muted: #f1f3f4;
+  --muted-foreground: #686868;
+  --accent: #eaf1fb;
+  --accent-foreground: #315f9f;
+  --destructive: #f20d18;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #dadce0;
+  --ring: #6b91d0;
+  --sidebar: #f6f6f6;
+  --sidebar-foreground: #171717;
+  --sidebar-primary: #171717;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf1fb;
+  --sidebar-accent-foreground: #315f9f;
+  --sidebar-border: #e5e5e5;
+
+  --nak-glass: rgb(255 255 255 / 72%);
+  --nak-glass-soft: rgb(255 255 255 / 58%);
+  --nak-glass-strong: rgb(255 255 255 / 86%);
+
+  /* Kumo Theme variable overrides for seamless Gmail-like feel */
+  --kumo-base: #ffffff;
+  --kumo-recessed: #f6f6f6;
+  --kumo-line: #e5e5e5;
+  --kumo-default: #171717;
+  --kumo-subtle: #5f6368;
+  --kumo-strong: #202124;
+  --kumo-tint: #f1f3f4;
+  --kumo-brand: #171717;
+  --kumo-fill: #f1f3f4;
+  --color-kumo-brand: #171717;
+  --color-kumo-brand-hover: #333333;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  background-color: #f4f6f9;
+  background-image:
+    radial-gradient(ellipse at 8% -18%, rgb(255 255 255 / 98%) 0%, transparent 44%),
+    radial-gradient(ellipse at 100% 4%, rgb(226 234 246 / 42%) 0%, transparent 42%),
+    linear-gradient(145deg, #f4f6f9 0%, #ffffff 54%, #f0f3f8 100%);
+  background-attachment: fixed;
+  color: #171717;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAK UI Utility Classes */
+.nak-label {
+  font-size: 0.6875rem !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #5f6368;
+}
+
+.nak-display {
+  font-family: var(--font-display);
+  font-weight: 500 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.nak-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--script);
+}
+
+.nak-row {
+  border-bottom: 1px solid var(--line);
+  transition: background-color 120ms ease;
+}
+.nak-row:hover {
+  background-color: var(--accent);
+}
+
+.nak-card {
+  background-color: var(--nak-glass);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+  border: 1px solid rgb(255 255 255 / 82%);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 28px rgb(28 43 65 / 5%), inset 0 1px 0 rgb(255 255 255 / 78%);
+}
+
+.nak-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  background-color: #171717;
+  color: #ffffff;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+  padding: 0.5rem 1.125rem;
+  border-radius: 1rem;
+  transition: all 120ms ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nak-btn:hover {
+  background-color: #333333;
+}
+
+.nak-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  background-color: transparent;
+  color: #171717;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+  padding: 0.5rem 1.125rem;
+  border: 1px solid #dadce0;
+  border-radius: 9999px;
+  transition: background-color 120ms ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.nak-btn-ghost:hover {
+  background-color: #eaf1fb;
+}
+
+.nak-app-shell {
+  background: transparent;
+}
+
+.nak-glass-header,
+.nak-glass-sidebar {
+  background-color: var(--nak-glass-soft) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(155%);
+  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 78%);
+}
+
+/* Keep large white work areas bright while letting the pearl canvas show through. */
+body [class~="bg-white"] {
+  background-color: var(--nak-glass-strong);
+}
+
+body [class~="bg-kumo-base"] {
+  background-color: var(--nak-glass);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+body [class~="bg-[#f6f6f6]"] {
+  background-color: var(--nak-glass-soft);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+
+body [class~="bg-[#f1f1f1]"] {
+  background-color: rgb(255 255 255 / 54%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nak-glass-header,
+  .nak-glass-sidebar,
+  .nak-card,
+  body [class~="bg-kumo-base"] {
+    background-color: rgb(255 255 255 / 94%);
+  }
+}
+
+.nak-sidebar-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.nak-sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 4px;
+}
+.nak-sidebar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* TipTap list styles */
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}

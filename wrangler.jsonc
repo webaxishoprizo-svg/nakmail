@@ -1,0 +1,86 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "agentic-inbox",
+	"compatibility_date": "2025-11-28",
+	"main": "./workers/app.ts",
+	"observability": {
+		"enabled": true
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"vars": {
+		"DOMAINS": "nakmedia.co",
+		// Admins: each is a Google login paired with their OWN Zoho user mailbox.
+		// The FIRST one is primary: aliases belong to its Zoho account.
+		"ADMINS": [
+			{ "google": "nakmediaco@gmail.com", "mailbox": "connect@nakmedia.co" },
+			{ "google": "nexusqteam@gmail.com", "mailbox": "admin@nakmedia.co" }
+		],
+		// "true" lets each admin also open the other admin's personal mailbox. Default: private.
+		"ADMINS_SHARE_MAILBOXES": "false",
+		"ZOHO_DC": "in",
+		// Business timezone used for "today" in analytics
+		"TIMEZONE": "Asia/Kolkata"
+	},
+	"triggers": { "crons": ["*/2 * * * *", "* * * * *"] },
+	"ai": {
+		"binding": "AI"
+	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "MAILBOX",
+				"class_name": "MailboxDO"
+			},
+			{
+				"name": "EMAIL_AGENT",
+				"class_name": "EmailAgent"
+			},
+			{
+				"name": "EMAIL_MCP",
+				"class_name": "EmailMCP"
+			},
+			{
+				"name": "AUTOMATION",
+				"class_name": "AutomationDO"
+			},
+			{
+				"name": "CONFIG",
+				"class_name": "ConfigDO"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"MailboxDO"
+			]
+		},
+		{
+			"tag": "v2",
+			"new_sqlite_classes": [
+				"EmailAgent"
+			]
+		},
+		{
+			"tag": "v3",
+			"new_sqlite_classes": [
+				"EmailMCP"
+			]
+		},
+		{
+			"tag": "v4",
+			"new_sqlite_classes": [
+				"AutomationDO"
+			]
+		},
+		{
+			"tag": "v5",
+			"new_sqlite_classes": [
+				"ConfigDO"
+			]
+		}
+	]
+}

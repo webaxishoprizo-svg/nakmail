@@ -1,0 +1,107 @@
+{
+	"name": "agentic-inbox",
+	"private": true,
+	"license": "Apache-2.0",
+	"type": "module",
+	"cloudflare": {
+		"label": "Agentic Inbox",
+		"products": [
+			"Workers",
+			"Durable Objects",
+			"Workers AI"
+		],
+		"bindings": {
+			"DOMAINS": {
+				"description": "Your domain with [Email Routing](https://developers.cloudflare.com/email-routing/) enabled (e.g. `example.com`). After deploying, create a catch-all Email Routing rule pointing to this Worker."
+			}
+		}
+	},
+	"scripts": {
+		"build": "react-router build && node scripts/clean-build-secrets.mjs",
+		"cf-typegen": "wrangler types",
+		"deploy": "npm run build && wrangler deploy",
+		"dev": "react-router dev",
+		"preview": "npm run build && vite preview",
+		"typecheck": "npm run cf-typegen && react-router typegen && tsc -b",
+		"test": "tsx --test test/*.test.ts"
+	},
+	"dependencies": {
+		"@cloudflare/ai-chat": "^0.1.8",
+		"@cloudflare/kumo": "^1.13.0",
+		"@phosphor-icons/react": "^2.1.10",
+		"@tanstack/react-query": "^5.99.0",
+		"@tiptap/extension-color": "3.32.0",
+		"@tiptap/extension-highlight": "3.32.0",
+		"@tiptap/extension-image": "3.32.0",
+		"@tiptap/extension-link": "3.32.0",
+		"@tiptap/extension-text-align": "3.32.0",
+		"@tiptap/extension-text-style": "3.32.0",
+		"@tiptap/extension-underline": "3.32.0",
+		"@tiptap/react": "3.32.0",
+		"@tiptap/starter-kit": "3.32.0",
+		"agents": "^0.7.6",
+		"ai": "^6.0.116",
+		"dompurify": "^3.3.3",
+		"drizzle-orm": "^0.45.1",
+		"hono": "^4.7.11",
+		"isbot": "^5.1.27",
+		"jose": "^6.2.1",
+		"lucide-react": "^1.56.0",
+		"postal-mime": "^2.6.1",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"react-markdown": "^10.1.0",
+		"react-router": "^7.18.4",
+		"remark-gfm": "^4.0.1",
+		"workers-ai-provider": "^3.1.2",
+		"xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
+		"zod": "^3.25.76",
+		"zustand": "^5.0.12"
+	},
+	"overrides": {
+		"@modelcontextprotocol/sdk": "1.32.1",
+		"@cloudflare/kumo": {
+			"zod": "$zod"
+		},
+		"@tiptap/core": "3.32.0",
+		"@tiptap/pm": "3.32.0",
+		"@tiptap/extensions": "3.32.0",
+		"@tiptap/extension-blockquote": "3.32.0",
+		"@tiptap/extension-bold": "3.32.0",
+		"@tiptap/extension-bubble-menu": "3.32.0",
+		"@tiptap/extension-bullet-list": "3.32.0",
+		"@tiptap/extension-code": "3.32.0",
+		"@tiptap/extension-code-block": "3.32.0",
+		"@tiptap/extension-document": "3.32.0",
+		"@tiptap/extension-dropcursor": "3.32.0",
+		"@tiptap/extension-floating-menu": "3.32.0",
+		"@tiptap/extension-gapcursor": "3.32.0",
+		"@tiptap/extension-hard-break": "3.32.0",
+		"@tiptap/extension-heading": "3.32.0",
+		"@tiptap/extension-horizontal-rule": "3.32.0",
+		"@tiptap/extension-italic": "3.32.0",
+		"@tiptap/extension-list": "3.32.0",
+		"@tiptap/extension-list-item": "3.32.0",
+		"@tiptap/extension-list-keymap": "3.32.0",
+		"@tiptap/extension-ordered-list": "3.32.0",
+		"@tiptap/extension-paragraph": "3.32.0",
+		"@tiptap/extension-strike": "3.32.0",
+		"@tiptap/extension-text": "3.32.0"
+	},
+	"devDependencies": {
+		"@cloudflare/vite-plugin": "^1.0.12",
+		"@cloudflare/workers-types": "^5.20261006.1",
+		"@react-router/dev": "^7.18.4",
+		"@tailwindcss/vite": "^4.1.4",
+		"@types/dompurify": "^3.0.5",
+		"@types/node": "^20.19.37",
+		"@types/react": "^19.1.2",
+		"@types/react-dom": "^19.1.2",
+		"tailwindcss": "^4.1.4",
+		"tsx": "^4.23.15",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.3",
+		"vite-tsconfig-paths": "^5.1.4",
+		"wrangler": "^4.151.0"
+	}
+}
